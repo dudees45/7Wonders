@@ -6,7 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/Launcher/launcher.iml" filepath="$PROJECT_DIR$/Launcher/launcher.iml" />
       <module fileurl="file://$PROJECT_DIR$/Model/model.iml" filepath="$PROJECT_DIR$/Model/model.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/projet-7wonders-5.iml" filepath="$PROJECT_DIR$/.idea/projet-7wonders-5.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Serveur/rmiService.iml" filepath="$PROJECT_DIR$/Serveur/rmiService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rmiService/rmiService.iml" filepath="$PROJECT_DIR$/rmiService/rmiService.iml" />
     </modules>
   </component>
 </project>
