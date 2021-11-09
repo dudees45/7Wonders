@@ -19,15 +19,16 @@ public class RunServeur {
 
 
             // Création de l'instance du service qui va être embarqué dans le serveur RMI
-            ServiceSevenWondersOnLine serviceAlexKiddBattleOnLine = ServiceSevenWondersOnLineImpl.creer();
+            ServiceSevenWondersOnLine serviceSevenWondersOnLine = ServiceSevenWondersOnLineImpl.creer();
 
             // Association de l'adresse à au service
-            Naming.rebind(RMI_SERVEUR, serviceAlexKiddBattleOnLine);
+            Naming.rebind(RMI_SERVEUR, serviceSevenWondersOnLine);
 
             System.out.println("Serveur lancé");
         } catch (RemoteException | MalformedURLException e) {
             e.printStackTrace();
         }
     }
+
 
 }
