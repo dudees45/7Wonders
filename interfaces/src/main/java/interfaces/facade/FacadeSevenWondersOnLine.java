@@ -1,10 +1,10 @@
-package service;
+package interfaces.facade;
 
-import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.Map;
 
-public interface ServiceSevenWondersOnLine extends Remote {
+
+public interface FacadeSevenWondersOnLine {
 
     String creePartie(String joueur) throws RemoteException;
     void rejoindreUnePartie(String nom) throws RemoteException;
@@ -25,12 +25,5 @@ public interface ServiceSevenWondersOnLine extends Remote {
     void partieTerminee() throws RemoteException;
     String getVainqueur(String joueur);
     void finDePartie();
-
-
-
-
-
-
-
 
 }

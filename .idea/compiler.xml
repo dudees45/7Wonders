@@ -7,17 +7,22 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="clientJfx" />
+        <module name="Serveur" />
+        <module name="interfaces" />
         <module name="rmiService" />
         <module name="model" />
-        <module name="launcher" />
+        <module name="Client" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="Client" target="15" />
       <module name="clientJfx" target="15" />
+      <module name="interfaces" target="15" />
       <module name="launcher" target="15" />
       <module name="model" target="15" />
       <module name="projet-7wonders-5" target="1.8" />
       <module name="rmiService" target="15" />
+      <module name="Serveur" target="15" />
     </bytecodeTargetLevel>
   </component>
 </project>
