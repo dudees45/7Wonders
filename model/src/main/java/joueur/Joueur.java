@@ -155,12 +155,12 @@ public class Joueur {
 
     //ajoute n pieces au joueur
     public void addPieces(int n) {
-        pieces = pieces+n;
+        pieces += n;
     }
 
     //enleve n pièces au joueur
     public void enleverPieces(int n){
-        pieces = pieces-n;
+        pieces -= n;
         if(pieces<0)
             pieces=0;  //Au cas où, bien que ça ne paraisse pas possible, le retrait dépasse la barre du positif ou nul du solde
     }
@@ -294,7 +294,7 @@ public class Joueur {
 
     //retire 1 point de victoire militaire au joueur, ce qui correspond à une défaite (dans l,optique, cette fonction sera privilégiée pour le calcul final)
     public void retirerPointsVictoireMilitaire(){
-        ptsVictoireMilitaire = ptsVictoireMilitaire-1;
+        ptsVictoireMilitaire--;
     }
 
     //retire n jetons de défaite militaire au joueur. Fonction prévue mais potentiellement inutile
