@@ -17,12 +17,14 @@ public class Plateau {
      * Tous les joueurs concernés par ce plateau
      */
     Collection<Joueur> joueurs;
+    
     /**
      * Constructeur du plateau avec la liste des joueurs
      */
     public Plateau() {
         this.joueurs = new ArrayList<Joueur>();
     }
+
     /**
      * Permet d'ajouter un joueur dans le plateau
      * @param j
