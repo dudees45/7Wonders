@@ -45,7 +45,7 @@ public class Joueur {
         ressources.put("Verres",0); //Le verre est un produit manufacture
         ressources.put("Papiers",0); //Le papier est un produit manufacture
         ressources.put("Bois",0);
-        ressources.put("Laines",0); //La laine est un produit manufacture
+        ressources.put("Tissus",0); //le tissu est un produit manufacture
         ressources.put("Briques",0);
         ressources.put("Minerais",0);
         ptsVictoire = 0;

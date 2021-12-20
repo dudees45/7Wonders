@@ -1,7 +1,6 @@
 package merveilles;
 
-import player.Player;
-
+import joueur.Joueur;
 import java.util.HashMap;
 
 public class Merveille {
@@ -137,7 +136,7 @@ public class Merveille {
 
 
     //TO DO : finir cette méthode (il faut appliquer les effets de l'étape au joueur fourni en paramètre)
-    public void construireEtape(Player p) {
+    public void construireEtape(Joueur p) {
             etape = etape+1; //on incrémente le num de l'étape de la merveille
             //on applique l'effet au joueur
             switch(etape) {
