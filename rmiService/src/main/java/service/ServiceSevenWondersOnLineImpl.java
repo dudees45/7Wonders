@@ -93,7 +93,7 @@ public class ServiceSevenWondersOnLineImpl extends UnicastRemoteObject implement
 
     @Override
     public Map<String, Integer> listesDesRessourcesDesVoisinsDeChaqueJoueur(int positionJoueur) {
-        return null;
+        return this.facadeSevenWondersOnLine.listesDesRessourcesDesVoisinsDeChaqueJoueur(positionJoueur);
     }
 
     @Override
@@ -115,7 +115,7 @@ public class ServiceSevenWondersOnLineImpl extends UnicastRemoteObject implement
 
     @Override
     public String getVainqueur(String joueur) {
-        return null;
+        return this.facadeSevenWondersOnLine.getVainqueur(joueur);
     }
 
 
