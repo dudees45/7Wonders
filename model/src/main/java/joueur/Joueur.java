@@ -1,4 +1,4 @@
-package player;
+package joueur;
 
 import merveilles.*;
 import cartes.*;
@@ -6,10 +6,10 @@ import cartes.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Player {
+public class Joueur {
 
     private String nom;
-    private ArrayList<Cartes> cartesJouees; //les cartes jouées par le joueur
+    private ArrayList<Carte> cartesJouees; //les cartes jouées par le joueur
     private HashMap<String,Integer> ressources; //ressources du joueur, ce qui comprend les matieres premieres et les produits manufactures
     private Merveille merveille; //merveille du joueur
 
@@ -33,10 +33,10 @@ public class Player {
 
 
     //constructeur
-    public Player(String nom){  //Constructeur, au début, seul le nom différencie les joueurs
+    public Joueur(String nom){  //Constructeur, au début, seul le nom différencie les joueurs
         this.nom = nom;
         pieces = 3; //On débute avec 3 pièces
-        cartesJouees = new ArrayList<Cartes>();
+        cartesJouees = new ArrayList<Carte>();
         etatJeu = false;
         commerceMatieresPremieres = false;
         commerceProduitsManufactures = false;
@@ -76,17 +76,17 @@ public class Player {
     //Cartes jouees
 
     //retourne toutes les cartes jouées par le joueur
-    public ArrayList<Cartes> getCartesJouees() {
+    public ArrayList<Carte> getCartesJouees() {
         return cartesJouees;
     }
 
     //ajoute une carte à la liste des cartes jouées par le joueur
-    public void addCartesJouees(Cartes laCarte) {
+    public void addCartesJouees(Carte laCarte) {
         cartesJouees.add(laCarte);
     }
 
     //Vérifie si le joueur a posé une carte en particulier et fournie en paramètre
-    public boolean aCarte(Cartes carte){
+    public boolean aCarte(Carte carte){
         return cartesJouees.contains(carte);
     }
 
