@@ -1,4 +1,4 @@
-package plateau.exceptions;
+package facade.exceptions;
 
 public class JoueurDejaAjoute extends Exception {
 }

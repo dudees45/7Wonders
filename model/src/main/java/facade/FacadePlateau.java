@@ -1,7 +1,5 @@
 package facade;
 
-import plateau.Plateau;
-
 public class FacadePlateau {
     /**
      * Le plateau géré par la façade
