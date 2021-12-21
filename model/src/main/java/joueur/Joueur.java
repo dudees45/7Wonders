@@ -48,6 +48,11 @@ public class Joueur {
         ressources.put("Tissus",0); //le tissu est un produit manufacture
         ressources.put("Briques",0);
         ressources.put("Minerais",0);
+        ressources.put("PierresOuBriques",0); //Pour la carte "Excavation"                        \
+        ressources.put("MineraisOuBriques",0); //Pour la carte "Fosse argileuse"                   \ Ces cartes offrent une ressource parmi une liste, on décide de créer des ressources spécifiques à ces cartes pour gérer le choix autrement
+        ressources.put("BoisOuPierres",0); //Pour la carte "Exploitation Forestiere"               /
+        ressources.put("BoisOuBriquesOuPierresOuMinerais",0); //Pour la carte "Caravanserail"     /
+        ressources.put("TissusOuVerresOuPapiers",0); //Pour la carte "Forum"                     /
         ptsVictoire = 0;
         ptsVictoireMilitaire = 0;
         puissanceMilitaire = 0;
