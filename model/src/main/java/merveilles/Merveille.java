@@ -9,6 +9,7 @@ public class Merveille {
     private String ressourceProduite; // ce que produit la merveille de base
     private String cite; // le nom de la merveille
     private int etape; // l'étape actuelle de cette étape
+    private String image; // le nom de l'image (pour JFX)
 
     //Pour chaque étape, son effet et ses ressources requises
     //A savoir qu'on travaille sur la face A des merveilles donc il n'y a que l'étape 2 qui donne autre chose que des pts de victoire
@@ -23,6 +24,8 @@ public class Merveille {
     //Troisieme etape
     private HashMap<String,Integer> ressourcesTroisiemeEtape;
     private HashMap<String,String> effetTroisiemeEtape;
+
+    private HashMap<String,Integer> ressourceEtapeCourante; //ressources nécessaires pour construire l'étape à suivre
 
 
     //Constructeur
@@ -112,6 +115,22 @@ public class Merveille {
 
     public void setEffetTroisiemeEtape(HashMap<String, String> effetTroisiemeEtape) {
         this.effetTroisiemeEtape = effetTroisiemeEtape;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public HashMap<String, Integer> getRessourceEtapeCourante() {
+        return ressourceEtapeCourante;
+    }
+
+    public void setRessourceEtapeCourante(HashMap<String, Integer> ressourceEtapeCourante) {
+        this.ressourceEtapeCourante = ressourceEtapeCourante;
     }
 
     //fonctions spécifiques (pas getters et setters)
