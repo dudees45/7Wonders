@@ -18,7 +18,7 @@
       <module name="Client" target="15" />
       <module name="clientJfx" target="15" />
       <module name="launcher" target="15" />
-      <module name="model" target="15" />
+      <module name="model" target="1.8" />
       <module name="projet-7wonders-5" target="1.8" />
       <module name="rmiService" target="15" />
       <module name="Serveur" target="15" />

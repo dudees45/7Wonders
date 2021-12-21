@@ -7,17 +7,31 @@ public class Carte {
     private String nom;
     private String type;
     private Map<String, Integer> cout;
-    private int configurationNumber;
+
     private int age;
     Map<String,String> effet;
+    Map<String,String> chainage;
 
-    public Carte(String nom, String type, Map<String, Integer> cout, int configurationNumber, int age, Map<String, String> effet) {
+    public Map<String, String> getChainage() {
+        return chainage;
+    }
+
+    public void setChainage(Map<String, String> chainage) {
+        this.chainage = chainage;
+    }
+
+    public Carte() {
+        super();
+    }
+
+    public Carte(String nom, String type, Map<String, Integer> cout, int configurationNumber, int age, Map<String, String> effet, Map<String,String> chainage) {
         this.nom = nom;
         this.type = type;
         this.cout = cout;
-        this.configurationNumber = configurationNumber;
         this.age = age;
         this.effet = effet;
+        this.chainage = chainage;
+
     }
 
     // Getters & setters
@@ -46,13 +60,7 @@ public class Carte {
         this.cout = cout;
     }
 
-    public int getConfigurationNumber() {
-        return configurationNumber;
-    }
 
-    public void setConfigurationNumber(int configurationNumber) {
-        this.configurationNumber = configurationNumber;
-    }
 
     public int getAge() {
         return age;

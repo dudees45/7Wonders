@@ -34,10 +34,10 @@ public class Partie {
         Collections.shuffle(Merveilles);
 
         ArrayList<Carte> toutesLesCartes = new ArrayList<Carte>();
-        for (int i =0; i< NB_CARTES; i++)
+       /* for (int i =0; i< NB_CARTES; i++)
         {
             if (carte[i].getConfigurationNumber() <= )     // a faire quand le Model sera bon
-        }
+        }*/
 
 
     }
