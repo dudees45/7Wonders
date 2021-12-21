@@ -298,9 +298,10 @@ public class Joueur {
         nbJetonsDefaite = nbJetonsDefaite+n;
     }
 
+
     //autres fonctions
 
-
+    /*
     public void setPuissanceMilitaire(int puissanceMilitaire) {
         this.puissanceMilitaire = puissanceMilitaire;
     }
@@ -324,4 +325,6 @@ public class Joueur {
     public void setNbCompas(int nbCompas) {
         this.nbCompas = nbCompas;
     }
+    */
+
 }
