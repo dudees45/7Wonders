@@ -93,7 +93,7 @@ public class Joueur {
 
     //Ressources
 
-    //retourne un dictionnaire listant toutes les ressources du joueur sous forme <nom, quantité>
+    //retourne une table de hachage listant toutes les ressources du joueur sous forme <nom, quantité>
     public HashMap<String, Integer> getRessources() {
         return ressources;
     }
@@ -108,7 +108,7 @@ public class Joueur {
         ressources.put(nom, ressources.get(nom) + n);
     }
 
-    //permet d'augmenter les ressources du joueur selon un dictionnaire de plusieurs augmentations <nom de la ressource, quantité>
+    //permet d'augmenter les ressources du joueur selon une table de hachage de plusieurs augmentations <nom de la ressource, quantité>
     public void augmenterPlusieursRessources(HashMap<String, Integer> listeAugmentations) {
         for (HashMap.Entry<String,Integer> e : listeAugmentations.entrySet()) {
             ressources.put(e.getKey(), ressources.get(e.getKey()) + e.getValue());
@@ -119,11 +119,8 @@ public class Joueur {
 
     //retourne si oui ou non le joueur a "qte" fois ou plus la ressource "nom"
     public boolean aAssezRessource(String nom, int qte){
-        if(ressources.get(nom) >= qte ) {
-            return true;
-        }else {
-            return false;
-        }
+        return ressources.get(nom) >= qte;
+
     }
 
     //retourne la quantité que le joueur possède de telle ressource dont le nom est fourni en paramètre
@@ -197,7 +194,6 @@ public class Joueur {
     public void setCommerceProduitsManufactures(boolean nouvelEtat) {
         commerceProduitsManufactures = nouvelEtat;
     }
-
 
     // Les pts de Victoire
 
@@ -305,5 +301,30 @@ public class Joueur {
 
     //autres fonctions
 
+    /*
+    public void setPuissanceMilitaire(int puissanceMilitaire) {
+        this.puissanceMilitaire = puissanceMilitaire;
+    }
+
+    public void setPieces(int pieces) {
+        this.pieces = pieces;
+    }
+
+    public void setCartesJouees(ArrayList<Carte> cartesJouees) {
+        this.cartesJouees = cartesJouees;
+    }
+
+    public void setNbTablettes(int nbTablettes) {
+        this.nbTablettes = nbTablettes;
+    }
+
+    public void setNbRouages(int nbRouages) {
+        this.nbRouages = nbRouages;
+    }
+
+    public void setNbCompas(int nbCompas) {
+        this.nbCompas = nbCompas;
+    }
+    */
 
 }
