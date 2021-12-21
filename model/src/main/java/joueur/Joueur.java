@@ -17,7 +17,7 @@ public class Joueur {
 
     //booleens d'état
     private boolean etatJeu; //définit si le joueur est prêt ou non
-    private boolean commerceMatieresPremieres, commerceProduitsManufactures; //definit si le joueur est en état de commercer et ce pour les deux types principaux de ressources
+    private boolean commerceMatieresPremieresDroite,commerceMatieresPremieresGauche, commerceProduitsManufactures; //definit si le joueur est en état de commercer et ce pour les deux types principaux de ressources
 
     private int ptsVictoire; //nb de points de Victoire simples (symboles aux lauriers)
 
@@ -38,7 +38,8 @@ public class Joueur {
         pieces = 3; //On débute avec 3 pièces
         cartesJouees = new ArrayList<Carte>();
         etatJeu = false;
-        commerceMatieresPremieres = false;
+        commerceMatieresPremieresDroite = false;
+        commerceMatieresPremieresGauche = false;
         commerceProduitsManufactures = false;
         ressources = new HashMap<String, Integer>(); // on initialise les ressources du joueur, à 0 de toute façon comme le choix des merveilles n'a pas été fait
         ressources.put("Pierres",0);
@@ -85,6 +86,92 @@ public class Joueur {
         return cartesJouees;
     }
 
+
+
+
+    // Ici on calcule le nombre de carte par type pour pouvoir appliquer les effets des Batiments de commerces et les Guildes
+    public  int getNbreCarteMatierePremiere() {
+        int nbreCarteMatierePremiere = 0;
+        for (Carte carte : cartesJouees) {
+            if (carte.getType().equals("Matieres Premieres")) {
+                nbreCarteMatierePremiere += 1;
+            }
+        }
+        return nbreCarteMatierePremiere;
+    }
+
+    public  int getNbreCarteProduitManufacture() {
+        int nbreCarteProduitManufacture = 0;;
+        for (Carte carte : cartesJouees) {
+
+            if (carte.getType().equals("Produit Manufacture"))
+            {
+                nbreCarteProduitManufacture += 1 ;
+            }
+        }
+        return nbreCarteProduitManufacture;
+    }
+    public  int getNbreCarteBatimentCommercial() {
+        int nbreCarteBatimentCommercial = 0;;
+        for (Carte carte : cartesJouees) {
+
+            if (carte.getType().equals("Batiment Commercial"))
+            {
+                nbreCarteBatimentCommercial += 1 ;
+            }
+        }
+        return nbreCarteBatimentCommercial;
+    }
+    public  int getNbreCarteBatimentMilitaire() {
+        int nbreCarteBatimentMilitaire = 0;;
+        for (Carte carte : cartesJouees) {
+            if (carte.getType().equals("Batiment Commercial"))
+            {
+                nbreCarteBatimentMilitaire += 1 ;
+            }
+        }
+
+        return nbreCarteBatimentMilitaire;
+    }
+
+    public  int getNbreCarteBatimentCivil() {
+        int nbreCarteBatimentCivil = 0;;
+        for (Carte carte : cartesJouees) {
+            if (carte.getType().equals("Batiment Commercial"))
+            {
+                nbreCarteBatimentCivil += 1 ;
+            }
+        }
+
+        return nbreCarteBatimentCivil;
+    }
+    public  int getNbreCarteGuilde() {
+        int nbreCarteGuilde = 0;;
+        for (Carte carte : cartesJouees) {
+            if (carte.getType().equals("Guilde"))
+            {
+                nbreCarteGuilde += 1 ;
+            }
+        }
+
+        return nbreCarteGuilde;
+    }
+    public  int getNbreCarteBatimentScientifique() {
+        int nbreCarteBatimentScientifique = 0;
+        for (Carte carte : cartesJouees) {
+            if (carte.getType().equals("Guilde"))
+            {
+                nbreCarteBatimentScientifique += 1 ;
+            }
+        }
+        return nbreCarteBatimentScientifique;
+    }
+
+
+
+
+
+
     //ajoute une carte à la liste des cartes jouées par le joueur
     public void addCartesJouees(Carte laCarte) {
         cartesJouees.add(laCarte);
@@ -119,6 +206,11 @@ public class Joueur {
             ressources.put(e.getKey(), ressources.get(e.getKey()) + e.getValue());
             // IMPORTANT : à tester car exception relevée de mon côté hors de ce git : la retrouver avec sa cause puis gérer avec un try/catch
             //Sinon : trouver une autre façon de procéder à l'itération de chaque valeur
+        }
+    }
+    public void augmenterPlusieursRess(int n, String... r){
+        for (String ressource: r) {
+            ressources.put(ressource,1);
         }
     }
 
@@ -180,15 +272,17 @@ public class Joueur {
         etatJeu = nouvelEtat;
     }
 
-    //retourne l'état du joueur quant au commerce de de produits manufactures
-    public boolean isCommerceMatieresPremieres() {
-        return commerceMatieresPremieres;
+
+    //definit l'état du joueur quant au commerce de matières premières avec le voisin de Droite
+    public void setCommerceMatieresPremieresDroite(boolean nouvelEtat) {
+        commerceMatieresPremieresDroite = nouvelEtat;
     }
 
-    //definit l'état du joueur quant au commerce de matières premières
-    public void setCommerceMatieresPremieres(boolean nouvelEtat) {
-        commerceMatieresPremieres = nouvelEtat;
+    //definit l'état du joueur quant au commerce de matières premières avec le voisin de Gauche
+    public void setCommerceMatieresPremieresGauche(boolean nouvelEtat) {
+        commerceMatieresPremieresGauche = nouvelEtat;
     }
+
 
     //retourne l'état du joueur quant au commerce de de produits manufactures
     public boolean isCommerceProduitsManufactures() {
@@ -306,7 +400,6 @@ public class Joueur {
 
     //autres fonctions
 
-    /*
     public void setPuissanceMilitaire(int puissanceMilitaire) {
         this.puissanceMilitaire = puissanceMilitaire;
     }
@@ -320,16 +413,14 @@ public class Joueur {
     }
 
     public void setNbTablettes(int nbTablettes) {
-        this.nbTablettes = nbTablettes;
+        this.nbTablettes += nbTablettes;
     }
 
     public void setNbRouages(int nbRouages) {
-        this.nbRouages = nbRouages;
+        this.nbRouages += nbRouages;
     }
 
     public void setNbCompas(int nbCompas) {
-        this.nbCompas = nbCompas;
+        this.nbCompas += nbCompas;
     }
-    */
-
 }
