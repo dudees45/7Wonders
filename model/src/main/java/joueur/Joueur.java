@@ -108,7 +108,7 @@ public class Joueur {
         ressources.put(nom, ressources.get(nom) + n);
     }
 
-    //permet d'augmenter les ressources du joueur selon un dictionnaire de plusieurs augmentations <nom de la ressource, quantité>
+    //permet d'augmenter les ressources du joueur selon une table de hachage de plusieurs augmentations <nom de la ressource, quantité>
     public void augmenterPlusieursRessources(HashMap<String, Integer> listeAugmentations) {
         for (HashMap.Entry<String,Integer> e : listeAugmentations.entrySet()) {
             ressources.put(e.getKey(), ressources.get(e.getKey()) + e.getValue());
