@@ -12,7 +12,7 @@ public class Partie {
 
     private ArrayList<Joueur> listeDesJoueurs;
     private final int NB_JOUEURS = 4;
-    private final int NB_CARTES = 148;
+    private final int NB_CARTES = 89;
     private final int NB_MERVEILLES = 7;
 
     private Carte[] carte;

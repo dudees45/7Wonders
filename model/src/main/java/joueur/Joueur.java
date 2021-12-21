@@ -119,11 +119,8 @@ public class Joueur {
 
     //retourne si oui ou non le joueur a "qte" fois ou plus la ressource "nom"
     public boolean aAssezRessource(String nom, int qte){
-        if(ressources.get(nom) >= qte ) {
-            return true;
-        }else {
-            return false;
-        }
+        return ressources.get(nom) >= qte;
+
     }
 
     //retourne la quantité que le joueur possède de telle ressource dont le nom est fourni en paramètre
@@ -197,7 +194,6 @@ public class Joueur {
     public void setCommerceProduitsManufactures(boolean nouvelEtat) {
         commerceProduitsManufactures = nouvelEtat;
     }
-
 
     // Les pts de Victoire
 
@@ -302,8 +298,30 @@ public class Joueur {
         nbJetonsDefaite = nbJetonsDefaite+n;
     }
 
-
     //autres fonctions
 
 
+    public void setPuissanceMilitaire(int puissanceMilitaire) {
+        this.puissanceMilitaire = puissanceMilitaire;
+    }
+
+    public void setPieces(int pieces) {
+        this.pieces = pieces;
+    }
+
+    public void setCartesJouees(ArrayList<Carte> cartesJouees) {
+        this.cartesJouees = cartesJouees;
+    }
+
+    public void setNbTablettes(int nbTablettes) {
+        this.nbTablettes = nbTablettes;
+    }
+
+    public void setNbRouages(int nbRouages) {
+        this.nbRouages = nbRouages;
+    }
+
+    public void setNbCompas(int nbCompas) {
+        this.nbCompas = nbCompas;
+    }
 }
