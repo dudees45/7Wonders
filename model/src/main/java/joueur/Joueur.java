@@ -93,7 +93,7 @@ public class Joueur {
 
     //Ressources
 
-    //retourne un dictionnaire listant toutes les ressources du joueur sous forme <nom, quantité>
+    //retourne une table de hachage listant toutes les ressources du joueur sous forme <nom, quantité>
     public HashMap<String, Integer> getRessources() {
         return ressources;
     }
