@@ -12,7 +12,7 @@ public class Joueur {
     private ArrayList<Carte> cartesJouees; //les cartes jouées par le joueur
     private HashMap<String,Integer> ressources; //ressources du joueur, ce qui comprend les matieres premieres et les produits manufactures
     private Merveille merveille; //merveille du joueur
-
+    private Deck deck;
     private int pieces;   //argent du joueur
 
     //booleens d'état
@@ -62,6 +62,7 @@ public class Joueur {
         nbRouages = 0;
         nbTablettes = 0;
         merveille = null;  // le joueur n'aura pas encore choisi de merveille à sa création
+        this.deck = null;
     }
 
     //Fonctions triées par attribu ciblé
@@ -166,11 +167,6 @@ public class Joueur {
         }
         return nbreCarteBatimentScientifique;
     }
-
-
-
-
-
 
     //ajoute une carte à la liste des cartes jouées par le joueur
     public void addCartesJouees(Carte laCarte) {
@@ -422,5 +418,13 @@ public class Joueur {
 
     public void setNbCompas(int nbCompas) {
         this.nbCompas += nbCompas;
+    }
+
+    public Deck getDeck() {
+        return deck;
+    }
+
+    public void setDeck(Deck deck) {
+        this.deck = deck;
     }
 }

@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class GestionsEffetsEtape {
 
-    public static void appliquerEffetMerveille(Joueur joueur) {
+    public void appliquerEffetMerveille(Joueur joueur) {
 
         if (joueur.getMerveille().getCite().equals("Olympia"))
         {
