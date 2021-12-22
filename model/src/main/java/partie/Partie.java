@@ -80,7 +80,7 @@ public class Partie {
 
     public void jouerCarte(Joueur joueur, Carte carte){
         GestionsEffetCarte gestionsEffetCarte = new GestionsEffetCarte();
-  //TODO gestionsEffetCarte.appliquerEffetCarte();
+        //TODO gestionsEffetCarte.appliquerEffetCarte();
         AtomicBoolean carteGratuite = new AtomicBoolean(false);
         joueur.getCartesJouees().forEach(cj -> {
             if(carte.getChainage().containsValue(cj.getNom())){
@@ -92,7 +92,7 @@ public class Partie {
           if(coutCarteEnGold()){
               joueur.enleverPieces(1);
           }else{
-              joueur.getRessources()
+              //TODO fonction qui va verifier si on a assez de ressources pour repondre au cout de la carte
           }
         }
     }
