@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="baseAnchor" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Menu">
+   <children>
+      <ImageView fx:id="imageFond" fitHeight="1080.0" fitWidth="1920.0" managed="false" nodeOrientation="INHERIT" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@../images/indexbg16x9.jpg" />
+         </image>
+      </ImageView>
+      <VBox fx:id="vboxMenu" layoutX="796.0" layoutY="470.0">
+         <children>
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" opacity="0.9" prefHeight="46.0" prefWidth="328.0" text="Se connecter">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" opacity="0.9" prefHeight="46.0" prefWidth="328.0" text="S'inscrire">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="56.0" mnemonicParsing="false" opacity="0.9" prefHeight="46.0" prefWidth="328.0" text="Quitter">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
