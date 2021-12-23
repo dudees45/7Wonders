@@ -16,6 +16,7 @@ public class Joueur {
     private Deck deck;
     private List<Joueur> amis;
     private int pieces;   //argent du joueur
+    private Boolean AJoue;
 
     //booleens d'état
     private boolean etatJeu; //définit si le joueur est prêt ou non
@@ -66,6 +67,7 @@ public class Joueur {
         merveille = null;  // le joueur n'aura pas encore choisi de merveille à sa création
         this.deck = null;
         this.amis = null;
+        this.AJoue = false;
     }
 
     //Fonctions triées par attribu ciblé
@@ -89,9 +91,6 @@ public class Joueur {
     public ArrayList<Carte> getCartesJouees() {
         return cartesJouees;
     }
-
-
-
 
     // Ici on calcule le nombre de carte par type pour pouvoir appliquer les effets des Batiments de commerces et les Guildes
     public  int getNbreCarteMatierePremiere() {
@@ -149,6 +148,7 @@ public class Joueur {
 
         return nbreCarteBatimentCivil;
     }
+
     public  int getNbreCarteGuilde() {
         int nbreCarteGuilde = 0;;
         for (Carte carte : cartesJouees) {
@@ -160,7 +160,8 @@ public class Joueur {
 
         return nbreCarteGuilde;
     }
-    public  int getNbreCarteBatimentScientifique() {
+    public  int getNbreCarteBatimentScientifique()
+    {
         int nbreCarteBatimentScientifique = 0;
         for (Carte carte : cartesJouees) {
             if (carte.getType().equals("Guilde"))
@@ -437,5 +438,13 @@ public class Joueur {
 
     public void setAmis(List<Joueur> amis) {
         this.amis = amis;
+    }
+
+    public Boolean getAJoue() {
+        return AJoue;
+    }
+
+    public void setAJoue(Boolean AJoue) {
+        this.AJoue = AJoue;
     }
 }

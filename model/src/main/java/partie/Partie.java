@@ -1,6 +1,7 @@
 package partie;
 
 import cartes.Carte;
+import cartes.Deck;
 import cartes.GestionsEffetCarte;
 import joueur.Joueur;
 import merveilles.GestionsEffetsEtape;
@@ -18,6 +19,9 @@ public class Partie {
     private final int NB_JOUEURS = 4;
     private final int NB_CARTES = 88;
     private final int NB_MERVEILLES = 7;
+
+    private int ageEnCours = 1;
+    private int tourEnCours= 1;
 
     private List<Carte> cartes;
     private List<Merveille> merveilles;
@@ -42,8 +46,8 @@ public class Partie {
         this.gestionsEffetCarte = null;
     }
 
-    public void constructionDesListes(){
-
+    public void constructionDesListes()
+    {
         Collections.shuffle(this.merveilles);
 
         this.cartes.forEach(c -> {
@@ -61,7 +65,8 @@ public class Partie {
 
     }
 
-    public void miseEnPlacePartie() {
+    public void miseEnPlacePartie()
+    {
         this.constructionDesListes();
         this.listeDesJoueurs.forEach( j -> {
             this.cartesAgeI.forEach(c -> {
@@ -78,7 +83,8 @@ public class Partie {
 
     }
 
-    public void jouerCarte(Joueur joueur, Carte carte){
+    public void jouerCarte(Joueur joueur, Carte carte)
+    {
         GestionsEffetCarte gestionsEffetCarte = new GestionsEffetCarte();
         //TODO gestionsEffetCarte.appliquerEffetCarte();
         AtomicBoolean carteGratuite = new AtomicBoolean(false);
@@ -95,12 +101,168 @@ public class Partie {
               //TODO fonction qui va verifier si on a assez de ressources pour repondre au cout de la carte
           }
         }
+        joueur.setAJoue(true);
     }
 
-    //TO DO : finir cette méthode (il faut appliquer les effets de l'étape au joueur fourni en paramètre)
-    public void construireEtape(Joueur p) {
+
+    public void construireEtape(Joueur p)
+    {
         this.gestionsEffetsEtape.appliquerEffetMerveille(p);
         p.getMerveille().setEtape(p.getMerveille().getEtape()+1);  //on incrémente le num de l'étape de la merveille
+    }
+
+    public void passerAuTourSuivant()
+    {
+        tourEnCours +=1;
+        Deck deck = new Deck();
+        if(ageEnCours == 1 || ageEnCours == 3)
+        {
+            for (int j = NB_JOUEURS-1; j>= 0; j--)
+            {
+                if (j == NB_JOUEURS-1){
+                    deck = listeDesJoueurs.get(j).getDeck();
+                    listeDesJoueurs.get(j).setDeck(listeDesJoueurs.get(j-1).getDeck());
+                }
+                else if (j == 0)
+                {
+                    listeDesJoueurs.get(j).setDeck(deck);
+                }
+                else {
+                    listeDesJoueurs.get(j).setDeck(listeDesJoueurs.get(NB_JOUEURS-1).getDeck());
+                }
+            }
+        }
+        else
+        {
+            Deck deck1 = new Deck();
+            for (int i = 0; i<NB_JOUEURS; i++)
+            {
+                if (i < NB_JOUEURS-1){
+                    if (i==0)
+                    {
+                        deck1 = listeDesJoueurs.get(i).getDeck();
+                        listeDesJoueurs.get(i).setDeck(listeDesJoueurs.get(i+1).getDeck());
+                    }
+                    listeDesJoueurs.get(i).setDeck(listeDesJoueurs.get(i+1).getDeck());
+                }
+                else {
+                    listeDesJoueurs.get(i).setDeck(deck1);
+                }
+            }
+        }
+    }
+
+    public void passerAgeSuivant()
+    {
+        ageEnCours +=1;
+        if (ageEnCours == 2)
+        {
+            this.listeDesJoueurs.forEach( j -> {
+                this.cartesAgeII.forEach(c -> {
+                    j.getDeck().ajoutCarteDansDeck(c);
+                    this.cartesAgeII.remove(c);
+                });
+            });
+        }
+        else {
+            this.listeDesJoueurs.forEach( j -> {
+                this.cartesAgeIII.forEach(c -> {
+                    j.getDeck().ajoutCarteDansDeck(c);
+                    this.cartesAgeIII.remove(c);
+                });
+            });
+        }
+    }
+
+    public int voisinDeDroite(int indice)
+    {
+        if (indice == NB_JOUEURS-1)
+            return 0;
+        return indice+1;
+    }
+    public int voisinDeGauche(int indice)
+    {
+        if (indice == 0)
+            return NB_JOUEURS - 1;
+        return indice-1;
+    }
+
+    public void conflitsMilitaire()
+    {
+        for (int i =0 ; i< NB_JOUEURS; i++) {
+            if (ageEnCours == 1)
+            {
+                // Bataille militaire avec le voisin de gauche et le voisin de droite pour l'age 1
+                if(listeDesJoueurs.get(voisinDeGauche(i)).getPuissanceMilitaire() > listeDesJoueurs.get(i).getPuissanceMilitaire())
+                {
+                    listeDesJoueurs.get(voisinDeGauche(i)).addPointsVictoireMilitaire(1);
+                    listeDesJoueurs.get(i).addJetonsDefaiteMilitaire(1);
+
+                }
+                else if (listeDesJoueurs.get(voisinDeGauche(i)).getPuissanceMilitaire() < listeDesJoueurs.get(i).getPuissanceMilitaire())
+                {
+                    listeDesJoueurs.get(i).addPointsVictoireMilitaire(1);
+                    listeDesJoueurs.get(voisinDeGauche(i)).addJetonsDefaiteMilitaire(1);
+                }
+                if(listeDesJoueurs.get(voisinDeDroite(i)).getPuissanceMilitaire() > listeDesJoueurs.get(i).getPuissanceMilitaire())
+                {
+                    listeDesJoueurs.get(voisinDeDroite(i)).addPointsVictoireMilitaire(1);
+                    listeDesJoueurs.get(i).addJetonsDefaiteMilitaire(1);
+                }
+                else if (listeDesJoueurs.get(voisinDeDroite(i)).getPuissanceMilitaire() < listeDesJoueurs.get(i).getPuissanceMilitaire())
+                {
+                    listeDesJoueurs.get(i).addPointsVictoireMilitaire(1);
+                    listeDesJoueurs.get(voisinDeDroite(i)).addJetonsDefaiteMilitaire(1);
+                }
+            }
+            else if(ageEnCours == 2)
+            {
+                if(listeDesJoueurs.get(voisinDeGauche(i)).getPuissanceMilitaire() > listeDesJoueurs.get(i).getPuissanceMilitaire())
+                {
+                    listeDesJoueurs.get(voisinDeGauche(i)).addPointsVictoireMilitaire(3);
+                    listeDesJoueurs.get(i).addJetonsDefaiteMilitaire(3);
+
+                }
+                else if (listeDesJoueurs.get(voisinDeGauche(i)).getPuissanceMilitaire() < listeDesJoueurs.get(i).getPuissanceMilitaire())
+                {
+                    listeDesJoueurs.get(i).addPointsVictoireMilitaire(3);
+                    listeDesJoueurs.get(voisinDeGauche(i)).addJetonsDefaiteMilitaire(3);
+                }
+                if(listeDesJoueurs.get(voisinDeDroite(i)).getPuissanceMilitaire() > listeDesJoueurs.get(i).getPuissanceMilitaire())
+                {
+                    listeDesJoueurs.get(voisinDeDroite(i)).addPointsVictoireMilitaire(3);
+                    listeDesJoueurs.get(i).addJetonsDefaiteMilitaire(3);
+                }
+                else if (listeDesJoueurs.get(voisinDeDroite(i)).getPuissanceMilitaire() < listeDesJoueurs.get(i).getPuissanceMilitaire())
+                {
+                    listeDesJoueurs.get(i).addPointsVictoireMilitaire(3);
+                    listeDesJoueurs.get(voisinDeDroite(i)).addJetonsDefaiteMilitaire(3);
+                }
+            }
+            else {
+                if(listeDesJoueurs.get(voisinDeGauche(i)).getPuissanceMilitaire() > listeDesJoueurs.get(i).getPuissanceMilitaire())
+                {
+                    listeDesJoueurs.get(voisinDeGauche(i)).addPointsVictoireMilitaire(5);
+                    listeDesJoueurs.get(i).addJetonsDefaiteMilitaire(5);
+
+                }
+                else if (listeDesJoueurs.get(voisinDeGauche(i)).getPuissanceMilitaire() < listeDesJoueurs.get(i).getPuissanceMilitaire())
+                {
+                    listeDesJoueurs.get(i).addPointsVictoireMilitaire(5);
+                    listeDesJoueurs.get(voisinDeGauche(i)).addJetonsDefaiteMilitaire(5);
+                }
+                if(listeDesJoueurs.get(voisinDeDroite(i)).getPuissanceMilitaire() > listeDesJoueurs.get(i).getPuissanceMilitaire())
+                {
+                    listeDesJoueurs.get(voisinDeDroite(i)).addPointsVictoireMilitaire(5);
+                    listeDesJoueurs.get(i).addJetonsDefaiteMilitaire(5);
+                }
+                else if (listeDesJoueurs.get(voisinDeDroite(i)).getPuissanceMilitaire() < listeDesJoueurs.get(i).getPuissanceMilitaire())
+                {
+                    listeDesJoueurs.get(i).addPointsVictoireMilitaire(5);
+                    listeDesJoueurs.get(voisinDeDroite(i)).addJetonsDefaiteMilitaire(5);
+                }
+            }
+        }
     }
 
 
