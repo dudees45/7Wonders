@@ -27,6 +27,9 @@ public class Merveille {
 
     private HashMap<String,Integer> ressourceEtapeCourante; //ressources nécessaires pour construire l'étape à suivre
 
+    public Merveille() {
+        super();
+    }
 
     //Constructeur
     public Merveille(String ressourceProduite, String cite, HashMap<String, Integer> ressourcesPremiereEtape, HashMap<String, String> effetPremiereEtape, HashMap<String, Integer> ressourcesDeuxiemeEtape, HashMap<String, String> effetDeuxiemeEtape, HashMap<String, Integer> ressourcesTroisiemeEtape, HashMap<String, String> effetTroisiemeEtape) {

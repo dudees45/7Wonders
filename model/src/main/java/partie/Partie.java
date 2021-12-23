@@ -94,14 +94,14 @@ public class Partie {
             }
         });
         //TODO fonction qui va verifier si le cout est en gold ou ressources
-        if(!carteGratuite.get()){
+        /*if(!carteGratuite.get()){
           if(coutCarteEnGold()){
               joueur.enleverPieces(1);
           }else{
               //TODO fonction qui va verifier si on a assez de ressources pour repondre au cout de la carte
           }
         }
-        joueur.setAJoue(true);
+        joueur.setAJoue(true);*/
     }
 
 
