@@ -28,6 +28,7 @@ public class Joueur {
     private int nbTablettes;
     private int nbRouages;
     private int nbCompas;
+    private int nbSymboleUniversel;
 
     //Attributs liés à la guerre
     private int puissanceMilitaire; //Nombre de symboles rouges
@@ -64,6 +65,7 @@ public class Joueur {
         nbCompas = 0;
         nbRouages = 0;
         nbTablettes = 0;
+        nbSymboleUniversel = 0; // sert pour l'étape 2 d'Alexandria et pour la Guilde des scientifiques (gain de symbole scientifique selon ce qui est le plus rentable)
         merveille = null;  // le joueur n'aura pas encore choisi de merveille à sa création
         this.deck = null;
         this.amis = null;
@@ -308,7 +310,7 @@ public class Joueur {
 
     //Ajoute n pts de victoire au joueur
     public void addPtsVictoire(int n){
-        ptsVictoire = ptsVictoire+n;
+        ptsVictoire += n;
     }
 
 
@@ -331,19 +333,23 @@ public class Joueur {
 
     //Ajoute n tablettes scientifiques au joueur
     public void addTablettes(int n){
-        nbTablettes = nbTablettes+n;
+        nbTablettes += n;
     }
 
     //Ajoute n rouages scientifiques au joueur
     public void addRouages(int n){
-        nbRouages = nbRouages+n;
+        nbRouages += n;
     }
 
     //Ajoute n compas scientifiques au joueur
     public void addCompas(int n){
-        nbCompas = nbCompas+n;
+        nbCompas += n;
     }
 
+    //Ajoute n compas scientifiques au joueur
+    public void addSymboleUniversel(int n){
+        nbSymboleUniversel += n;
+    }
 
     //Les fonctions militaires
 
@@ -379,12 +385,12 @@ public class Joueur {
 
     //ajoute n points de victoire militaire au joueur
     public void addPointsVictoireMilitaire(int n){
-        ptsVictoireMilitaire = ptsVictoireMilitaire+n;
+        ptsVictoireMilitaire += n;
     }
 
     //ajoute n jetons de défaite militaire au joueur
     public void addJetonsDefaiteMilitaire(int n){
-        nbJetonsDefaite = nbJetonsDefaite+n;
+        nbJetonsDefaite += n;
     }
 
     //retire 1 point de victoire militaire au joueur, ce qui correspond à une défaite (dans l,optique, cette fonction sera privilégiée pour le calcul final)
