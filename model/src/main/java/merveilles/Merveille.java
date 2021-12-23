@@ -153,7 +153,7 @@ public class Merveille {
         return true;
     }
 
-
+    /*
     //TO DO : finir cette méthode (il faut appliquer les effets de l'étape au joueur fourni en paramètre)
     public void construireEtape(Joueur p) {
             etape = etape+1; //on incrémente le num de l'étape de la merveille
@@ -167,5 +167,5 @@ public class Merveille {
                     break;
             }
     }
-
+    */
 }
