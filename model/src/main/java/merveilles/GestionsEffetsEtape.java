@@ -16,7 +16,7 @@ public class GestionsEffetsEtape {
             }
             else if (joueur.getMerveille().getEtape() == 2)
             {
-                //TODO Batiment gratuit
+                //TODO première carte gratuite à chaque âge
             }
             else if (joueur.getMerveille().getEtape() == 3)
             {

@@ -8,12 +8,14 @@
         <outputRelativeToContentRoot value="true" />
         <module name="Serveur" />
         <module name="model" />
+        <module name="interfaces" />
         <module name="Client" />
         <module name="launcher" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="Client" target="15" />
+      <module name="interfaces" target="1.8" />
       <module name="launcher" target="15" />
       <module name="model" target="1.8" />
       <module name="projet-7wonders-5" target="1.8" />
