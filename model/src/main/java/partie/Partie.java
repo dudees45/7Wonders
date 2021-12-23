@@ -46,6 +46,8 @@ public class Partie {
         this.gestionsEffetCarte = null;
         this.ageEnCours = 1;
         this.tourEnCours = 1;
+        this.gestionsEffetCarte = new GestionsEffetCarte();
+        this.gestionsEffetsEtape = new GestionsEffetsEtape();
     }
 
     public void constructionDesListes()
@@ -85,10 +87,10 @@ public class Partie {
 
     }
 
-    public void jouerCarte(Joueur joueur, Carte carte)
-    {
-        GestionsEffetCarte gestionsEffetCarte = new GestionsEffetCarte();
-        //TODO gestionsEffetCarte.appliquerEffetCarte();
+    public void jouerCarte(Joueur joueur, Carte carte,int indice) throws Exception {
+        indice = listeDesJoueurs.indexOf(joueur);
+
+        gestionsEffetCarte.appliquerEffetCarte(carte.getEffet(),joueur, listeDesJoueurs.get(voisinDeGauche(indice)), listeDesJoueurs.get(voisinDeDroite(indice)));
         AtomicBoolean carteGratuite = new AtomicBoolean(false);
         joueur.getCartesJouees().forEach(cj -> {
             if(carte.getChainage().containsValue(cj.getNom())){
