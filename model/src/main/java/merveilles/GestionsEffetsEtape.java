@@ -46,8 +46,7 @@ public class GestionsEffetsEtape {
             }
             else if (joueur.getMerveille().getEtape() == 2)
             {
-                //TODO Ressource au choix parmi les MP
-                //joueur.augmenterRessource("BoisOuBriquesOuPierresOuMinerais",1);  ????? -Matthieu
+                joueur.augmenterRessource("BoisOuBriquesOuPierresOuMinerais",1);
             }
             else if (joueur.getMerveille().getEtape() == 3)
             {
@@ -77,7 +76,7 @@ public class GestionsEffetsEtape {
             }
             else if (joueur.getMerveille().getEtape() == 2)
             {
-                //TODO Symbole scientifique gratuit
+                joueur.addSymboleUniversel(1);
             }
             else if (joueur.getMerveille().getEtape() == 3)
             {
@@ -92,7 +91,7 @@ public class GestionsEffetsEtape {
             }
             else if (joueur.getMerveille().getEtape() == 2)
             {
-                //TODO Batiment gratuit
+                joueur.addPuissanceMilitaire(2);
             }
             else if (joueur.getMerveille().getEtape() == 3)
             {
