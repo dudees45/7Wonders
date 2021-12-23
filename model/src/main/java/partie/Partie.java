@@ -26,6 +26,7 @@ public class Partie {
     private List<Carte> cartes;
     private List<Merveille> merveilles;
 
+
     // Differentes listes pour différencier les cartes
     private ArrayList<Carte> cartesAgeI;
     private ArrayList<Carte> cartesAgeII;
@@ -87,8 +88,8 @@ public class Partie {
 
     }
 
-    public void jouerCarte(Joueur joueur, Carte carte,int indice) throws Exception {
-        indice = listeDesJoueurs.indexOf(joueur);
+    public void jouerCarte(Joueur joueur, Carte carte) throws Exception {
+        int indice = listeDesJoueurs.indexOf(joueur);
 
         gestionsEffetCarte.appliquerEffetCarte(carte.getEffet(),joueur, listeDesJoueurs.get(voisinDeGauche(indice)), listeDesJoueurs.get(voisinDeDroite(indice)));
         AtomicBoolean carteGratuite = new AtomicBoolean(false);
@@ -106,6 +107,7 @@ public class Partie {
           }
         }
         joueur.setAJoue(true);*/
+        suitePartie();
     }
 
     public void deffausserCarteFinAge()
@@ -332,7 +334,55 @@ public class Partie {
                 passerAuTourSuivant();
             }
         }
+
         // on arrete la partie ici
+    }
+    public void comptagePointVictoirePourBatimentScientifique(Joueur joueur)
+    {
+        joueur.addPtsVictoire(joueur.getNbRouages() * joueur.getNbRouages());
+        joueur.addPtsVictoire(joueur.getNbCompas() * joueur.getNbCompas());
+        joueur.addPtsVictoire(joueur.getNbTablettes() * joueur.getNbTablettes());
+
+        int nbRouage = joueur.getNbRouages();
+        int nbCompas = joueur.getNbCompas();
+        int nbTablette = joueur.getNbTablettes();
+        int lotSymbole = 0;
+
+        while (nbRouage == 0 || nbCompas == 0 || nbTablette == 0 )
+        {
+            lotSymbole += 1;
+            nbRouage -=1;
+            nbCompas -=1;
+            nbTablette -=1;
+        }
+        joueur.addPtsVictoire(lotSymbole*7);
+    }
+    public void ajoutPointVictoireEnFinPartie() throws Exception {
+        if (finDePartie())
+        {
+            for (Joueur joueur: listeDesJoueurs) {
+                comptagePointVictoirePourBatimentScientifique(joueur);
+                ajoutPointVictoireDuTresor(joueur);
+                ajoutPointVictoireConflitsMilitaire(joueur);
+                int indice = listeDesJoueurs.indexOf(joueur);
+                for (Carte carte: joueur.getCartesJouees()) {
+                    if (carte.getType().equals("Guilde"))
+                    {
+                        gestionsEffetCarte.appliquerEffetGuildesFinDePartie(carte.getEffet(),joueur,listeDesJoueurs.get(voisinDeGauche(indice)), listeDesJoueurs.get(voisinDeDroite(indice)));
+                    }
+                }
+            }
+        }
+    }
+
+    public void ajoutPointVictoireDuTresor(Joueur joueur)
+    {
+        joueur.addPtsVictoire(joueur.getPieces()/3);
+    }
+
+    public void ajoutPointVictoireConflitsMilitaire(Joueur joueur)
+    {
+        joueur.addPtsVictoire(joueur.getPtsVictoireMilitaire() - joueur.getNbJetonsDefaite());
     }
 
 
