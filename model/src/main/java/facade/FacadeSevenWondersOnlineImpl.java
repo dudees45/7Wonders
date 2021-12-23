@@ -14,8 +14,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class FacadeSevenWondersOnlineImpl implements FacadeSevenWondersOnLine {
+public class FacadeSevenWondersOnlineImpl implements FacadeSevenWondersOnLine
 
+{
     private Map<Integer, Partie> parties;
     private List<User> joueursInscrits;
     private Map<User,String> utilisateursConnectes;

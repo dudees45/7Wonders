@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/clientJfx/Client.iml" filepath="$PROJECT_DIR$/clientJfx/Client.iml" />
       <module fileurl="file://$PROJECT_DIR$/rmiService/Serveur.iml" filepath="$PROJECT_DIR$/rmiService/Serveur.iml" />
       <module fileurl="file://$PROJECT_DIR$/Client/clientJfx.iml" filepath="$PROJECT_DIR$/Client/clientJfx.iml" />
+      <module fileurl="file://$PROJECT_DIR$/interfaces/interfaces.iml" filepath="$PROJECT_DIR$/interfaces/interfaces.iml" />
       <module fileurl="file://$PROJECT_DIR$/Launcher/launcher.iml" filepath="$PROJECT_DIR$/Launcher/launcher.iml" />
       <module fileurl="file://$PROJECT_DIR$/Model/model.iml" filepath="$PROJECT_DIR$/Model/model.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/projet-7wonders-5.iml" filepath="$PROJECT_DIR$/.idea/projet-7wonders-5.iml" />

@@ -20,8 +20,8 @@ public class Partie {
     private final int NB_CARTES = 88;
     private final int NB_MERVEILLES = 7;
 
-    private int ageEnCours = 1;
-    private int tourEnCours= 1;
+    private int ageEnCours;
+    private int tourEnCours;
 
     private List<Carte> cartes;
     private List<Merveille> merveilles;
@@ -44,6 +44,8 @@ public class Partie {
         this.carteDefausse = null;
         this.gestionsEffetsEtape = null;
         this.gestionsEffetCarte = null;
+        this.ageEnCours = 1;
+        this.tourEnCours = 1;
     }
 
     public void constructionDesListes()
@@ -94,14 +96,14 @@ public class Partie {
             }
         });
         //TODO fonction qui va verifier si le cout est en gold ou ressources
-        /*if(!carteGratuite.get()){
+        if(!carteGratuite.get()){
           if(coutCarteEnGold()){
               joueur.enleverPieces(1);
           }else{
               //TODO fonction qui va verifier si on a assez de ressources pour repondre au cout de la carte
           }
         }
-        joueur.setAJoue(true);*/
+        joueur.setAJoue(true);
     }
 
 
@@ -189,7 +191,8 @@ public class Partie {
 
     public void conflitsMilitaire()
     {
-        for (int i =0 ; i< NB_JOUEURS; i++) {
+        for (int i =0 ; i< NB_JOUEURS; i++)
+        {
             if (ageEnCours == 1)
             {
                 // Bataille militaire avec le voisin de gauche et le voisin de droite pour l'age 1
@@ -239,7 +242,8 @@ public class Partie {
                     listeDesJoueurs.get(voisinDeDroite(i)).addJetonsDefaiteMilitaire(3);
                 }
             }
-            else {
+            else
+            {
                 if(listeDesJoueurs.get(voisinDeGauche(i)).getPuissanceMilitaire() > listeDesJoueurs.get(i).getPuissanceMilitaire())
                 {
                     listeDesJoueurs.get(voisinDeGauche(i)).addPointsVictoireMilitaire(5);
