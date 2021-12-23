@@ -96,16 +96,33 @@ public class Partie {
             }
         });
         //TODO fonction qui va verifier si le cout est en gold ou ressources
-        if(!carteGratuite.get()){
+        /*if(!carteGratuite.get()){
           if(coutCarteEnGold()){
               joueur.enleverPieces(1);
           }else{
               //TODO fonction qui va verifier si on a assez de ressources pour repondre au cout de la carte
           }
         }
-        joueur.setAJoue(true);
+        joueur.setAJoue(true);*/
     }
 
+    public void deffausserCarteFinAge()
+    {
+        for (Joueur joueur: listeDesJoueurs) {
+            for (int i =0; i< joueur.getDeck().getSizeDeck(); i++)
+            {
+                carteDefausse.add(joueur.getDeck().getCarteDansDeck(i));
+                joueur.getDeck().clearDeck();
+            }
+        }
+
+    }
+    public void deffausserCarte(Joueur joueur, Carte carte)
+    {
+        joueur.getDeck().enleverCarteDuDeck(carte);
+        carteDefausse.add(carte);
+        joueur.addPieces(3);
+    }
 
     public void construireEtape(Joueur p)
     {
@@ -267,6 +284,53 @@ public class Partie {
                 }
             }
         }
+
+    }
+
+    public boolean finAge()
+    {
+        if(tourEnCours == 6 && toutLeMondeAJoue())
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean toutLeMondeAJoue()
+    {
+        for (Joueur joueur: listeDesJoueurs) {
+            if(!joueur.getAJoue())
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+    public boolean finDePartie()
+    {
+        if (ageEnCours == 3 && tourEnCours == 6 && toutLeMondeAJoue())
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public void suitePartie()
+    {
+        if(!finDePartie())
+        {
+            if (finAge())
+            {
+                conflitsMilitaire();
+                deffausserCarteFinAge();
+                passerAgeSuivant();
+            }
+            if (toutLeMondeAJoue())
+            {
+                passerAuTourSuivant();
+            }
+        }
+        // on arrete la partie ici
     }
 
 
