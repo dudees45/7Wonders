@@ -413,15 +413,15 @@ public class Joueur {
     }
 
     public void setNbTablettes(int nbTablettes) {
-        this.nbTablettes += nbTablettes;
+        this.nbTablettes = nbTablettes;
     }
 
     public void setNbRouages(int nbRouages) {
-        this.nbRouages += nbRouages;
+        this.nbRouages = nbRouages;
     }
 
     public void setNbCompas(int nbCompas) {
-        this.nbCompas += nbCompas;
+        this.nbCompas = nbCompas;
     }
 
     public Deck getDeck() {

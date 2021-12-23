@@ -52,15 +52,15 @@ public class GestionsEffetCarte {
             }
             if (effet.get("nomEffet").equals("gain_symboles") && effet.get("symboleEffet").equals("tablette"))
             {
-                joueur.setNbTablettes(1);
+                joueur.addTablettes(1);
             }
             if (effet.get("nomEffet").equals("gain_symboles") && effet.get("symboleEffet").equals("science"))
             {
-                joueur.setNbCompas(1);
+                joueur.addCompas(1);
             }
             if (effet.get("nomEffet").equals("gain_symboles") && effet.get("symboleEffet").equals("ingenieur"))
             {
-                joueur.setNbRouages(1);
+                joueur.addRouages(1);
             }
 
             if (effet.get("nomEffet").equals("bazar"))
@@ -155,36 +155,36 @@ public class GestionsEffetCarte {
             {
                 if (joueur.getNbCompas()> joueur.getNbRouages() && joueur.getNbCompas()>joueur.getNbTablettes())
                 {
-                    joueur.setNbCompas(1);
+                    joueur.addCompas(1);
                 }
                 else if (joueur.getNbCompas() < joueur.getNbRouages() && joueur.getNbCompas()>joueur.getNbTablettes())
                 {
-                    joueur.setNbRouages(1);
+                    joueur.addRouages(1);
                 }
                 else if (joueur.getNbCompas()> joueur.getNbRouages() && joueur.getNbCompas()<joueur.getNbTablettes())
                 {
-                    joueur.setNbTablettes(1);
+                    joueur.addTablettes(1);
                 }
                 else if (joueur.getNbCompas() == joueur.getNbRouages() && joueur.getNbCompas()>joueur.getNbTablettes())
                 {
-                    joueur.setNbRouages(1);
+                    joueur.addRouages(1);
                 }
-                else if (joueur.getNbCompas() == joueur.getNbRouages() && joueur.getNbCompas()<joueur.getNbTablettes())
+                else if (joueur.getNbCompas() == joueur.getNbRouages() && joueur.getNbCompas() < joueur.getNbTablettes())
                 {
-                    joueur.setNbTablettes(1);
+                    joueur.addTablettes(1);
                 }
                 else if (joueur.getNbCompas() < joueur.getNbRouages() && joueur.getNbCompas()==joueur.getNbTablettes())
                 {
-                    joueur.setNbRouages(1);
+                    joueur.addRouages(1);
                 }
                 else if (joueur.getNbCompas()> joueur.getNbRouages() && joueur.getNbCompas()==joueur.getNbTablettes())
                 {
-                    joueur.setNbTablettes(1);
+                    joueur.addTablettes(1);
                 }
 
                 else if (joueur.getNbCompas()> joueur.getNbRouages() && joueur.getNbRouages() == joueur.getNbTablettes())
                 {
-                    joueur.setNbCompas(1);
+                    joueur.addCompas(1);
                 }
             }
         }
