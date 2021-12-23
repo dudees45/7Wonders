@@ -47,6 +47,7 @@ public class GestionsEffetsEtape {
             else if (joueur.getMerveille().getEtape() == 2)
             {
                 //TODO Ressource au choix parmi les MP
+                //joueur.augmenterRessource("BoisOuBriquesOuPierresOuMinerais",1);  ????? -Matthieu
             }
             else if (joueur.getMerveille().getEtape() == 3)
             {
