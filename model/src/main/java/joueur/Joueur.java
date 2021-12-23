@@ -5,6 +5,7 @@ import cartes.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class Joueur {
 
@@ -13,6 +14,7 @@ public class Joueur {
     private HashMap<String,Integer> ressources; //ressources du joueur, ce qui comprend les matieres premieres et les produits manufactures
     private Merveille merveille; //merveille du joueur
     private Deck deck;
+    private List<Joueur> amis;
     private int pieces;   //argent du joueur
 
     //booleens d'état
@@ -63,6 +65,7 @@ public class Joueur {
         nbTablettes = 0;
         merveille = null;  // le joueur n'aura pas encore choisi de merveille à sa création
         this.deck = null;
+        this.amis = null;
     }
 
     //Fonctions triées par attribu ciblé
@@ -426,5 +429,13 @@ public class Joueur {
 
     public void setDeck(Deck deck) {
         this.deck = deck;
+    }
+
+    public List<Joueur> getAmis() {
+        return amis;
+    }
+
+    public void setAmis(List<Joueur> amis) {
+        this.amis = amis;
     }
 }
