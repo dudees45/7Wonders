@@ -16,7 +16,7 @@ public class Joueur {
     private Deck deck;
     private List<Joueur> amis;
     private int pieces;   //argent du joueur
-    private Boolean AJoue;
+    private boolean AJoue;
 
     //booleens d'état
     private boolean etatJeu; //définit si le joueur est prêt ou non
@@ -453,4 +453,13 @@ public class Joueur {
     public void setAJoue(Boolean AJoue) {
         this.AJoue = AJoue;
     }
+
+    public boolean isCommerceMatieresPremieresDroite() {
+        return commerceMatieresPremieresDroite;
+    }
+
+    public boolean isCommerceMatieresPremieresGauche() {
+        return commerceMatieresPremieresGauche;
+    }
+
 }
