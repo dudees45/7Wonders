@@ -357,7 +357,8 @@ public class Partie {
         }
         joueur.addPtsVictoire(lotSymbole*7);
     }
-    public void ajoutPointVictoireEnFinPartie() throws Exception {
+    public void ajoutPointVictoireEnFinPartie() throws Exception
+    {
         if (finDePartie())
         {
             for (Joueur joueur: listeDesJoueurs) {
