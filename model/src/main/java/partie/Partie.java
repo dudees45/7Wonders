@@ -10,6 +10,7 @@ import merveilles.Merveille;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Partie {
@@ -90,23 +91,83 @@ public class Partie {
 
     public void jouerCarte(Joueur joueur, Carte carte) throws Exception {
         int indice = listeDesJoueurs.indexOf(joueur);
+        boolean achatPossible = true;
+        int pieceRedevableVoisinGauche = 0; // ces variables permettent d'appliquer l'achat de la carte que apres la verification de tous les conditions possible
+        int pieceRedevableVoisinDroite = 0;
 
-        gestionsEffetCarte.appliquerEffetCarte(carte.getEffet(),joueur, listeDesJoueurs.get(voisinDeGauche(indice)), listeDesJoueurs.get(voisinDeDroite(indice)));
         AtomicBoolean carteGratuite = new AtomicBoolean(false);
         joueur.getCartesJouees().forEach(cj -> {
             if(carte.getChainage().containsValue(cj.getNom())){
                 carteGratuite.set(true);
             }
         });
-        //TODO fonction qui va verifier si le cout est en gold ou ressources
-        /*if(!carteGratuite.get()){
-          if(coutCarteEnGold()){
-              joueur.enleverPieces(1);
-          }else{
-              //TODO fonction qui va verifier si on a assez de ressources pour repondre au cout de la carte
+        if(!carteGratuite.get())
+        {
+          if(carte.getCout().containsKey("pieces"))
+          {
+              joueur.enleverPieces(carte.getCout().get("pieces"));
+              joueur.getCartesJouees().add(carte);
+              joueur.getDeck().enleverCarteDuDeck(carte);
+              gestionsEffetCarte.appliquerEffetCarte(carte.getEffet(),joueur, listeDesJoueurs.get(voisinDeGauche(indice)), listeDesJoueurs.get(voisinDeDroite(indice)));
+          }
+          else
+          {
+              for (Map.Entry<String,Integer> entryCarte: carte.getCout().entrySet())
+              {
+                  String cle = entryCarte.getKey();
+                  int cout = entryCarte.getValue();
+
+
+                  // On va verifier la condition de si il a pas les ressources nécessaire, il va donc verifier chez le voisin
+                  if(joueur.getRessources().get(cle) < cout)
+                  {
+                      // verification voisin de gauche
+                      if(listeDesJoueurs.get(voisinDeGauche(indice)).getRessources().get(cle) + joueur.getRessources().get(cle) > cout)
+                      {
+                          // verification si il a des batiments commerciale qui lui donne un avantage pour l'achat
+                          if(joueur.isCommerceMatieresPremieresGauche() && joueur.isCommerceProduitsManufactures()) //TODO a amilioré !
+                          {
+                              pieceRedevableVoisinGauche += cout - joueur.getRessources().get(cle);
+                          }
+                          else
+                          {
+                              pieceRedevableVoisinGauche +=(cout - joueur.getRessources().get(cle)) * 2;
+                          }
+
+                      }
+                      else if (listeDesJoueurs.get(voisinDeDroite(indice)).getRessources().get(cle) + joueur.getRessources().get(cle) > cout)
+                      {
+                          // verification si il a des batiments commerciale qui lui donne un avantage pour l'achat
+                          if(joueur.isCommerceMatieresPremieresDroite() && joueur.isCommerceProduitsManufactures()) //TODO a amilioré !
+                          {
+                              pieceRedevableVoisinDroite += cout - joueur.getRessources().get(cle);
+                          }
+                          else
+                          {
+                              pieceRedevableVoisinDroite +=(cout - joueur.getRessources().get(cle)) * 2;
+                          }
+                      }
+                      else {
+                          achatPossible = false;
+                      }
+                  }
+              }
+              if(achatPossible)
+              {
+                  listeDesJoueurs.get(voisinDeGauche(indice)).addPieces(pieceRedevableVoisinGauche);
+                  listeDesJoueurs.get(voisinDeDroite(indice)).addPieces(pieceRedevableVoisinDroite);
+                  joueur.enleverPieces(pieceRedevableVoisinGauche + pieceRedevableVoisinDroite);
+                  joueur.getCartesJouees().add(carte);
+                  joueur.getDeck().enleverCarteDuDeck(carte);
+                  gestionsEffetCarte.appliquerEffetCarte(carte.getEffet(),joueur, listeDesJoueurs.get(voisinDeGauche(indice)), listeDesJoueurs.get(voisinDeDroite(indice)));
+              }
+              else
+              {
+                  // Notif si il clique sur acheter ca doit lui afficher qu'il ne peut pas !
+              }
           }
         }
-        joueur.setAJoue(true);*/
+        joueur.setAJoue(true);
         suitePartie();
     }
 
@@ -357,7 +418,8 @@ public class Partie {
         }
         joueur.addPtsVictoire(lotSymbole*7);
     }
-    public void ajoutPointVictoireEnFinPartie() throws Exception {
+    public void ajoutPointVictoireEnFinPartie() throws Exception
+    {
         if (finDePartie())
         {
             for (Joueur joueur: listeDesJoueurs) {
