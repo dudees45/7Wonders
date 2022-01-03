@@ -8,8 +8,8 @@ import java.util.Map;
 
 public interface FacadeSevenWondersOnLine {
 
-    Joueur inscriptionJoueur(String nom);
-    Joueur connexionJoueur(String nom);//pr l'instant pr que ce soit plus simple
+    void inscriptionUser(String nom);
+    void connexionUser(String nom);//pr l'instant pr que ce soit plus simple
     void ajouterJoueurEnAmi(String nom);
     void inviterJoueur(Joueur joueur);
 

@@ -17,7 +17,8 @@ import java.util.Map;
 public class FacadeSevenWondersOnlineImpl implements FacadeSevenWondersOnLine
 
 {
-    private Map<Integer, Partie> parties;
+    private Map<Integer,Partie> parties;
+    private User user;
     private List<User> joueursInscrits;
     private Map<User,String> utilisateursConnectes;
     private Map<User,Partie> userDansPreLobby;
@@ -25,6 +26,7 @@ public class FacadeSevenWondersOnlineImpl implements FacadeSevenWondersOnLine
     private List<Merveille> lesMerveilles;
 
     public FacadeSevenWondersOnlineImpl() {
+        //mongodb this.user = null;
         this.userDansPreLobby = new HashMap<>();
         this.parties = new HashMap<>();
         //recuperer joueurs inscrits mongodb jsp si on peut ^^ this.joueursInscrits
@@ -42,17 +44,23 @@ public class FacadeSevenWondersOnlineImpl implements FacadeSevenWondersOnLine
         }    }
 
     @Override
-    public Joueur inscriptionJoueur(String nom) {
-        return null;
+    public void inscriptionUser(String nom) {
+
+
+        //mongodb soit creer instance si non existant soit emmener sur connexion
+        this.user = new User(nom);
     }
 
     @Override
-    public Joueur connexionJoueur(String pseudo) {
-        return null;
+    public void connexionUser(String pseudo) {
+        //test si dans db
+        //sinon recuperation user existant getUserByPseudo
     }
 
     @Override
     public void ajouterJoueurEnAmi(String pseudo) {
+        //test si pseudo dans db si oui ajouter
+
 
     }
 
@@ -64,7 +72,7 @@ public class FacadeSevenWondersOnlineImpl implements FacadeSevenWondersOnLine
     @Override
     public String creePartie(String joueur) {
 
-       // Partie p = new Partie()
+        //Partie p = new Partie(this.userDansPreLobby,this.lesCartes,this.lesMerveilles);
         return null;
 
     }
